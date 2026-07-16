@@ -1,0 +1,26 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@clerk/express": "^1.7.41",
+    "@stream-io/node-sdk": "^0.7.12",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "inngest": "^4.4.0",
+    "interview-ai": "file:..",
+    "mongoose": "^9.6.0",
+    "nodemon": "^3.1.14",
+    "openai": "^6.38.0",
+    "stream-chat": "^9.44.0"
+  }
+}
