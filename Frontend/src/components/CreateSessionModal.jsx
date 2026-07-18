@@ -13,10 +13,35 @@ function CreateSessionModal({
 
   if (!isOpen) return null;
 
+  const handleProblemChange = (e) => {
+    const value = e.target.value;
+
+    if (!value) {
+      setRoomConfig({
+        problem: "",
+        difficulty: "",
+      });
+      return;
+    }
+
+    const selectedProblem = problems.find(
+      (problem) => problem.title === value
+    );
+
+    if (!selectedProblem) {
+      console.error("Problem not found:", value);
+      return;
+    }
+
+    setRoomConfig({
+      problem: selectedProblem.title,
+      difficulty: selectedProblem.difficulty,
+    });
+  };
+
   return (
     <div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50">
       <div className="bg-[#1e293b] rounded-xl p-6 w-[450px] text-white">
-
         <h2 className="text-2xl font-bold mb-6">
           Create Session
         </h2>
@@ -24,16 +49,7 @@ function CreateSessionModal({
         <select
           className="w-full p-3 rounded-lg bg-[#273449] border border-gray-600"
           value={roomConfig.problem}
-          onChange={(e) => {
-            const selectedProblem = problems.find(
-              (p) => p.title === e.target.value
-            );
-
-            setRoomConfig({
-              problem: selectedProblem.title,
-              difficulty: selectedProblem.difficulty,
-            });
-          }}
+          onChange={handleProblemChange}
         >
           <option value="">Select Problem</option>
 
@@ -76,7 +92,6 @@ function CreateSessionModal({
             {isCreating ? "Creating..." : "Create"}
           </button>
         </div>
-
       </div>
     </div>
   );
